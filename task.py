@@ -1,8 +1,10 @@
 import argparse
 
+from ToDoList import ToDoList
+
 def main():
     args = retrieve_command()
-    print(f"Args: {args}")
+    l = ToDoList("data.json")
     read_command(args)
 
 def read_command(args):
