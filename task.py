@@ -10,7 +10,7 @@ def read_command(args, list):
     match args.command:
         case "add":
             print(f"Adding task: {args.task_name}")
-            list.add_task(args.task_name)
+            list.add_task(args.task_name, args.description)
         case "update":
             print("Updating task")
         case "delete":
@@ -32,6 +32,7 @@ def retrieve_command():
     # Subparser for add command
     parser_add = subparsers.add_parser("add", help="Add a new task")
     parser_add.add_argument("task_name", type=str, help="Name of the task to add")
+    parser_add.add_argument("description", nargs="?", type=str, default="", help="A short description of the task")
 
     # Subparser for update command
     parser_update = subparsers.add_parser("update", help="Update an existing task")
