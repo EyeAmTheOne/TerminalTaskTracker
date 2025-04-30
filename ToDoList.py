@@ -28,4 +28,10 @@ class ToDoList:
         data["next_id"] += 1
         self.save_data(data)
 
+    def list_tasks(self, status="todo"):
+        """Returns list of tasks with a specified status. Each task is triple of (id, name, description)."""
+        data = self.load_data()
+        tasks = [(task["id"], task["name"], task["description"]) for task in data["tasks"] if task["status"] == status]
+        return tasks
+
 

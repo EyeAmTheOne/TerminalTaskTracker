@@ -21,6 +21,17 @@ def read_command(args, list):
             print("Marking task as done")
         case "list":
             print("Listing all tasks")
+            # Print the tasks based on the status in a nice format
+            tasks = list.list_tasks(args.status)
+            if not tasks:
+                print("No tasks found")
+            else:
+                for task in tasks:
+                    if task[2]:
+                        print(f"- ({task[0]}) {task[1]}")
+                        print(f"  {task[2]}")
+                    else:
+                        print(f"- ({task[0]}) {task[1]}")
         case _:
             print("Unknown command")
 
