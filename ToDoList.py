@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 class ToDoList:
     def __init__(self, filename):
@@ -18,10 +19,11 @@ class ToDoList:
         with open(self.filename, 'w') as file:
             json.dump(data, file, indent=4)
 
-    def add_task(self, name):
+    def add_task(self, name, description=""):
         """Add new task to the list."""
         data = self.load_data()
-        task = { "id": data["next_id"], "name": name, "status": "todo" }
+        create_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        task = { "id": data["next_id"], "name": name, "status": "todo", "description": description, "createdAt": create_time, "updatedAt": None }
         data["tasks"].append(task)
         data["next_id"] += 1
         self.save_data(data)

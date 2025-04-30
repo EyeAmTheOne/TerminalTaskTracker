@@ -1,5 +1,4 @@
 import argparse
-
 from ToDoList import ToDoList
 
 def main():
