@@ -5,12 +5,13 @@ from ToDoList import ToDoList
 def main():
     args = retrieve_command()
     l = ToDoList("data.json")
-    read_command(args)
+    read_command(args, l)
 
-def read_command(args):
+def read_command(args, list):
     match args.command:
         case "add":
             print(f"Adding task: {args.task_name}")
+            list.add_task(args.task_name)
         case "update":
             print("Updating task")
         case "delete":
