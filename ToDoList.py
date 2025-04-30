@@ -34,4 +34,51 @@ class ToDoList:
         tasks = [(task["id"], task["name"], task["description"]) for task in data["tasks"] if task["status"] == status]
         return tasks
 
+    def mark_task(self, id, status):
+        """Mark task with the provided status"""
+        data = self.load_data()
+        found = False
+        for task in data["tasks"]:
+            if task["id"] == id:
+                task["status"] = status
+                found = True
+                break
+        
+        # ID not found
+        if not found:
+            raise ValueError(f"Task with id {id} not found")
+        self.save_data(data)
 
+    def delete_task(self, id):
+        """Delete task with a specified id."""
+        data = self.load_data()
+        found = False
+        l = []
+        for task in data["tasks"]:
+            if task["id"] == id:
+                found = True
+            else:
+                l.append(task)
+        data["tasks"] = l
+
+        # ID not found
+        if not found:
+            raise ValueError(f"Task with id {id} not found")
+        self.save_data(data)
+
+    def update_task(self, id, name, description=""):
+        """Update task with a specified id."""
+        data = self.load_data()
+        found = False
+        for task in data["tasks"]:
+            if task["id"] == id:
+                task["name"] = name
+                task["description"] = description
+                task["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                found = True
+                break
+
+        # ID not found
+        if not found:
+            raise ValueError(f"Task with id {id} not found")
+        self.save_data(data)

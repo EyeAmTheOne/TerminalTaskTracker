@@ -12,15 +12,19 @@ def read_command(args, list):
             print(f"Adding task: {args.task_name}")
             list.add_task(args.task_name, args.description)
         case "update":
-            print("Updating task")
+            print(f"Updating task {args.id}")
+            list.update_task(args.id, args.task_name, args.description)
         case "delete":
-            print("Deleting task")
+            print(f"Deleting task {args.id}")
+            list.delete_task(args.id)
         case "mark-in-progress":
-            print("Marking task as in progress")
+            print(f"Marking task {args.id} as in progress")
+            list.mark_task(args.id, "in-progress")
         case "mark-done":
-            print("Marking task as done")
+            print(f"Marking task {args.id} as done")
+            list.mark_task(args.id, "done")
         case "list":
-            print("Listing all tasks")
+            print(f"{args.status.upper()} tasks:")
             # Print the tasks based on the status in a nice format
             tasks = list.list_tasks(args.status)
             if not tasks:
@@ -49,6 +53,7 @@ def retrieve_command():
     parser_update = subparsers.add_parser("update", help="Update an existing task")
     parser_update.add_argument("id", type=int, help="ID of the task to update")
     parser_update.add_argument("task_name", type=str, help="New name of the task")
+    parser_update.add_argument("description", nargs="?", type=str, default="", help="An optional new description for the task")
 
     # Subparser for delete command
     parser_delete = subparsers.add_parser("delete", help="Delete a task")
