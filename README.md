@@ -1,5 +1,7 @@
 # TerminalTaskTracker
 
+Project idea from https://roadmap.sh/projects/task-tracker
+
 ## How to use
 
 Clone this repository and cd into it.
