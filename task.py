@@ -69,7 +69,7 @@ def retrieve_command():
 
     # Subparser for list command, can run list on its own, or add extra arguments
     parser_list = subparsers.add_parser("list", help="List tasks")
-    parser_list.add_argument("status", nargs="?", choices=["todo", "done", "in-progress"], default="todo", help="List all tasks")
+    parser_list.add_argument("status", nargs="?", choices=["todo", "done", "in-progress", ""], default="", help="List all tasks")
 
     return parser.parse_args()
 
