@@ -14,7 +14,10 @@ cd TerminalTaskTracker
 ```bash
 
 # Add a new task with a name and description
-python task.py add "Task Name" "Task Description" python task.py update <task_id> "New Task Name" "New Task Description"
+python task.py add "Task Name" "Task Description"
+
+# Update a task with a new name and/or description by its unique ID
+python task.py update <task_id> "New Task Name" "New Task Description"
 
 # Delete a task by its unique ID
 python task.py delete <task_id>
